@@ -8,3 +8,10 @@ services:
     volumes:
       - ./server:/srv:cached
     working_dir: /srv
+  node:
+    build: ./node
+    ports:
+      - "4200:4200"
+    volumes:
+      - "./server:/projects"
+    tty: true
