@@ -3,6 +3,8 @@ package com.example.api.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.api.Constant.ConstantWeatherInfo;
+import com.example.api.repsitory.CountryInfoDto;
 import com.example.api.repsitory.GetWeatherApiServiceDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -17,7 +19,7 @@ import org.springframework.web.client.RestTemplate;
 public class GetWeatherApiServiceImpl implements GetWeatherApiService {
 
     @Override
-    public List<GetWeatherApiServiceDto> getWeatherTokyoApi() {
+    public List<GetWeatherApiServiceDto> getWeatherTokyoApi(CountryInfoDto countryInfDto) {
 
         RestTemplate rest = new RestTemplate();
         String retJsonWeather = "";
@@ -27,11 +29,19 @@ public class GetWeatherApiServiceImpl implements GetWeatherApiService {
         String[] temperatureMin = null;
         // 最高気温
         String[] temperatureMax = null;
+        // 降水量
+        String[] precipitationSum = null;
         // お天気情報の日時
         String[] weatherDate = null;
+        // APIのURL
+        String url = null;
 
-        // お天気APIのURL(東京)
-        final String url = "https://api.open-meteo.com/v1/forecast?latitude=35.6785&longitude=139.6823&hourly=temperature_2m,relativehumidity_2m&daily=temperature_2m_max,temperature_2m_min&timezone=Asia/Tokyo";
+        if(ConstantWeatherInfo.CONTRY_TOKYO_STRING.equals(countryInfDto.getCountryName())){
+            // 東京の天気情報(URL)の設定
+            url =ConstantWeatherInfo.TOKYO_URL_STRING;
+        } else {
+            url = "";
+        }
 
         List<GetWeatherApiServiceDto> resultList = new ArrayList<GetWeatherApiServiceDto>();
 
@@ -43,29 +53,23 @@ public class GetWeatherApiServiceImpl implements GetWeatherApiService {
             String jsons = retJsonWeather.toString();
             // json形式に変換
             JsonNode root = mapper.readTree(jsons);
-            System.out.println("---------------------daily_units---------------------");
             dailys = root.get("daily");
             temperatureMin = dailys.get("temperature_2m_min").toString().split(",");
             temperatureMax = dailys.get("temperature_2m_max").toString().split(",");
+            precipitationSum = dailys.get("precipitation_sum").toString().split(",");
             weatherDate = dailys.get("time").toString().split(",");
 
-            for(int i = 0; i < weatherDate.length; i++){
+            for(int i = 0; i < ConstantWeatherInfo.ROOP_COUNT; i++){
 
                 // 天気情報dto
                 GetWeatherApiServiceDto weatherDto = new GetWeatherApiServiceDto();
                 weatherDto.setWeatherDate(weatherDate[i].replace("[", "").replace("]", ""));
                 weatherDto.setTemperatureMax(temperatureMax[i].replace("[", "").replace("]", ""));
                 weatherDto.setTemperatureMin(temperatureMin[i].replace("[", "").replace("]", ""));
-
-                System.out.println(weatherDto.getWeatherDate());
-                System.out.println(weatherDto.getTemperatureMax());
-                System.out.println(weatherDto.getTemperatureMin());
+                weatherDto.setPrecipitationSum(precipitationSum[i].replace("[", "").replace("]", ""));
 
                 resultList.add(weatherDto);
-
             }
-
-            System.out.println("---------------------daily_units---------------------");
 
         } catch(HttpClientErrorException e){
             System.out.println(e);
@@ -74,7 +78,6 @@ public class GetWeatherApiServiceImpl implements GetWeatherApiService {
             System.out.println(e);
 
         }
-
         return resultList;
     }
 

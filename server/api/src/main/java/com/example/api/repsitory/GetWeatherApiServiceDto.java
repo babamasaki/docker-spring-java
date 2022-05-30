@@ -8,6 +8,8 @@ public class GetWeatherApiServiceDto {
     String temperatureMax;
     // 最低気温
     String temperatureMin;
+    // 降水量
+    String precipitationSum;
 
 
     public void setWeatherDate(String weatherDate){
@@ -32,5 +34,13 @@ public class GetWeatherApiServiceDto {
 
     public String getTemperatureMin(){
         return temperatureMin;
+    }
+
+    public void setPrecipitationSum(String precipitationSum){
+        this.precipitationSum = precipitationSum;
+    }
+
+    public String getPrecipitationSum(){
+        return precipitationSum;
     }
 }
