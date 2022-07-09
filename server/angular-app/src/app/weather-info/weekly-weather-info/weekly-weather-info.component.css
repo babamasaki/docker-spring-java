@@ -1,0 +1,18 @@
+.box-container{
+  background-color:brown;
+  width: 1700px;
+}
+
+.weekly-box{
+  width: 100%;
+  display: flex;
+  background-color:khaki;
+
+}
+
+.today-box{
+  background-color: chartreuse;
+  width: 15%;
+  margin-left: 30px;
+}
+

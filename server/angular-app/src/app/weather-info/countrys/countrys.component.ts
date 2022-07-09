@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { GetWeeklyWeatherService } from 'src/app/get-weekly-weather.service';
-import { GetWeeklyWeatherServiceInDto } from '../../get-weekly-weather-Service-in-dto';
-import { Data } from '@angular/router';
-import { GetWeeklyWeatherServiceOutDto } from 'src/app/get-weekly-weather-Service-out-dto';
+import { GetWeeklyWeatherServiceInDto } from '../../get-weekly-weather-service-in-dto';
+import { Router } from '@angular/router';
+import { GetWeeklyWeatherServiceOutDto } from '../../get-weekly-weather-service-out-dto';
+import { CountrysService } from 'src/app/countrys.service';
 
 
 @Component({
@@ -14,11 +15,27 @@ export class CountrysComponent implements OnInit {
 
   weatherInfoList: Array<GetWeeklyWeatherServiceOutDto> = [];
 
+  countrys:Array<string> = [];
+
   constructor(
     private getWeeklyWeatherService: GetWeeklyWeatherService
+    ,private router: Router
+    ,private countrysService: CountrysService
   ) {}
 
   ngOnInit(): void {
+
+    // 国名を取得
+    this.countrysService.getWeather().subscribe(response=>{
+
+      // 設定ファイルから値を取得
+      Object.entries(response).forEach(([key, fromValue]) => {
+        this.countrys.push(fromValue);
+
+      });
+
+    });
+
   }
 
   getWeather(country: string){
@@ -39,9 +56,11 @@ export class CountrysComponent implements OnInit {
 
       });
 
-      for (const value of this.weatherInfoList) {
-        console.log(value);
-      }
+      let weatherData = JSON.stringify(this.weatherInfoList);
+      sessionStorage.removeItem('weatherData');
+      sessionStorage.setItem('weatherData', weatherData);
+
+      this.router.navigate(['/weekly-weather-info']);
     });
   }
 

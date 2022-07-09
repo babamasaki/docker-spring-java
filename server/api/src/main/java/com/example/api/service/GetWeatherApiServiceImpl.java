@@ -18,6 +18,11 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class GetWeatherApiServiceImpl implements GetWeatherApiService {
 
+    /**
+     * お天気情報取得API呼び出し
+     * @param 国名 文字列型
+     * @return ６日分のお天気情報　配列のGetWeatherApiServiceDto
+     */
     @Override
     public List<GetWeatherApiServiceDto> getWeatherTokyoApi(CountryInfoDto countryInfDto) {
 
@@ -39,7 +44,17 @@ public class GetWeatherApiServiceImpl implements GetWeatherApiService {
         if(ConstantWeatherInfo.CONTRY_TOKYO_STRING.equals(countryInfDto.getCountryName())){
             // 東京の天気情報(URL)の設定
             url =ConstantWeatherInfo.TOKYO_URL_STRING;
+
+        } else if(ConstantWeatherInfo.CONTRY_NEWYORK_STRING.equals(countryInfDto.getCountryName())){
+            // ニューヨークの天気情報(URL)の設定
+            url =ConstantWeatherInfo.NEWYORK_URL_STRING;
+
+        } else if(ConstantWeatherInfo.CONTRY_LONDON_STRING.equals(countryInfDto.getCountryName())){
+            // ロンドンの天気情報(URL)の設定
+            url =ConstantWeatherInfo.LONDON_URL_STRING;
+
         } else {
+
             url = "";
         }
 
@@ -48,7 +63,6 @@ public class GetWeatherApiServiceImpl implements GetWeatherApiService {
         try{
             // 東京の天気情報を取得。
             ResponseEntity<String> response = rest.getForEntity(url, String.class);
-
             retJsonWeather = response.getBody();
             String jsons = retJsonWeather.toString();
             // json形式に変換
