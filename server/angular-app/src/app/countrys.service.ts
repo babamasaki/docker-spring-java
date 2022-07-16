@@ -12,7 +12,7 @@ export class CountrysService {
     private http: HttpClient
   ) { }
 
-  // POST で使うヘッダーを作っておく
+  // ヘッダーを作っておく
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };

@@ -21,7 +21,7 @@ public class GetWeatherApiServiceImpl implements GetWeatherApiService {
     /**
      * お天気情報取得API呼び出し
      * @param 国名 文字列型
-     * @return ６日分のお天気情報　配列のGetWeatherApiServiceDto
+     * @return ６日分のお天気情報　GetWeatherApiServiceDto型
      */
     @Override
     public List<GetWeatherApiServiceDto> getWeatherTokyoApi(CountryInfoDto countryInfDto) {
