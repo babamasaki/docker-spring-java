@@ -16,8 +16,6 @@ export class WeeklyWeatherInfoComponent implements OnInit {
 
   ngOnInit(): void {
 
-    let getWeeklyWeatherOutDto = <GetWeeklyWeatherServiceOutDto>{}
-
     // セッションストレージからデータを取得
     const weatherData = sessionStorage.getItem('weatherData');
 

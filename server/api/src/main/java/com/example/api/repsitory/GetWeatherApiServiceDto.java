@@ -1,7 +1,7 @@
 package com.example.api.repsitory;
 
 public class GetWeatherApiServiceDto {
-    
+
     // 取得日
     String weatherDate;
     // 最高気温

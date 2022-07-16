@@ -1,5 +1,6 @@
 
 <div class="box-container">
+  <h1 class="weekly-title">WeatherInfo</h1>
   <div class="weekly-box">
     <div class="today-box" *ngFor="let sd of weatherInfoList; index as i">
       <p><span>{{sd.weatherDate.replace(regex,'')}}</span></p>
@@ -9,4 +10,3 @@
     </div>
   </div>
 </div>
-<p>weekly-weather-info works!</p>
