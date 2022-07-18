@@ -1,0 +1,8 @@
+<div class="container-country">
+  <h1 class="title-country">Select a Country</h1>
+  <div class="box-country">
+    <div class="field-country" *ngFor="let country of countrys">
+      <button (click)="getWeather(country)" class="btn-country">{{country}}</button>
+    </div>
+  </div>
+</div>

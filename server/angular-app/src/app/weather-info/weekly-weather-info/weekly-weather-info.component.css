@@ -1,0 +1,50 @@
+.box-container{
+  height: 900px;
+  text-align: center;
+}
+.weekly-title{
+  color: white;
+  padding-top: 2%;
+}
+
+.weekly-box{
+  width: 100%;
+  display: flex;
+  padding-top: 5%;
+}
+
+.today-box{
+  width: 16%;
+  margin: auto;
+  text-align: center;
+  padding: 10px 0;
+  color: white;
+  background-color:rgba(255,255,255,0.3);
+  border-radius: 10px 20px 30px 40px;
+}
+
+@media screen and (max-width: 700px) {
+
+  .box-container{
+    height: 700px;
+  }
+
+  .weekly-box {
+    display: block;
+    padding-top: 0;
+    overflow-y: auto; /* スクロールで表示 */
+    height: 600px;
+  }
+
+  .weekly-box::-webkit-scrollbar{
+    /* スクロールバーの非表示表示 */
+    display: none;
+  }
+
+  .today-box{
+    background-color:rgba(255,255,255,0.3);
+    width: auto;
+    margin: 5px;
+    text-align: center;
+  }
+}

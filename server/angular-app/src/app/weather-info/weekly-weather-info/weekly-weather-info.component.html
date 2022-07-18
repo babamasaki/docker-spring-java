@@ -1,0 +1,12 @@
+
+<div class="box-container">
+  <h1 class="weekly-title">WeatherInfo</h1>
+  <div class="weekly-box">
+    <div class="today-box" *ngFor="let sd of weatherInfoList; index as i">
+      <p><span>{{sd.weatherDate.replace(regex,'')}}</span></p>
+      <p>最高気温：<span>{{sd.temperatureMax}}</span></p>
+      <p>最低気温：<span>{{sd.temperatureMin}}</span></p>
+      <p>湿度：<span>{{sd.precipitationSum}}</span></p>
+    </div>
+  </div>
+</div>

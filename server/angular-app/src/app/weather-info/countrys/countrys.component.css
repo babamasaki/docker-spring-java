@@ -1,0 +1,47 @@
+.container-country{
+  height: 900px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.title-country{
+  color: white;
+  padding-top: 2%;
+}
+
+.box-country{
+  height: 500px;
+  margin-top: 10px;
+  overflow-y: auto; /* スクロールで表示 */
+}
+
+.box-country::-webkit-scrollbar{
+  /* スクロールバーの非表示表示 */
+  display: none;
+}
+
+.field-country{
+  height: 20%;
+}
+
+.btn-country{
+  height: 80%;
+  width: 200px;
+  padding: 0px 10px;
+  margin: auto;
+  color: white;
+  background-color:rgba(255,255,255,0.3);
+  border-radius: 10px 20px 30px 40px;
+  font-size: 1.8em;
+  font-family: cursive;
+}
+
+.btn-country:hover {
+  background-color:rgba(255,255,255,0.5);
+}
+
+@media screen and (max-width: 700px) {
+  .container-country{
+    height: 700px;
+  }
+}
