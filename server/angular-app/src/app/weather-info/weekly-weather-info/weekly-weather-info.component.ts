@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GetWeeklyWeatherServiceOutDto } from 'src/app/get-weekly-weather-service-out-dto';
+import { GetWeeklyWeatherServiceOutDto } from 'src/app/get-weekly-weather-Service-out-dto';
 
 @Component({
   selector: 'app-weekly-weather-info',
