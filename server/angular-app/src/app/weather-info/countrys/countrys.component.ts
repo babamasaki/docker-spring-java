@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { GetWeeklyWeatherService } from 'src/app/get-weekly-weather.service';
-import { GetWeeklyWeatherServiceInDto } from '../../get-weekly-weather-service-in-dto';
+import { GetWeeklyWeatherServiceInDto } from 'src/app/get-weekly-weather-service-in-dto';
 import { Router } from '@angular/router';
-import { GetWeeklyWeatherServiceOutDto } from '../../get-weekly-weather-service-out-dto';
+import { GetWeeklyWeatherServiceOutDto } from 'src/app/get-weekly-weather-Service-out-dto';
 import { CountrysService } from 'src/app/countrys.service';
 
 

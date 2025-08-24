@@ -1,17 +1,15 @@
-version: '3.6'
+version: '3'
 services:
-  app:
-    image: openjdk:15
+  backend:
+    build: ./server/api
+    container_name: spring-app
     ports:
-      - 8080:8080
-    tty: true
-    volumes:
-      - ./server:/srv:cached
-    working_dir: /srv
-  node:
-    build: ./node
+      - "8080:8080"
+
+  frontend:
+    build: ./server/angular-app
+    container_name: angular-app
     ports:
       - "4200:4200"
-    volumes:
-      - "./server:/projects"
-    tty: true
+    depends_on:
+      - backend
